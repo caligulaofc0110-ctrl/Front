@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Minha API</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .caixa {
+            background: white;
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="caixa">
+
+        <h1>Minha API</h1>
+
+        <p>Teste de frontend + backend</p>
+
+        <button onclick="buscarMensagem()">
+            Buscar mensagem
+        </button>
+
+        <p id="resultado">
+            Nada recebido ainda...
+        </p>
+
+    </div>
+
+
+    <script>
+
+        async function buscarMensagem() {
+
+            const resposta = await fetch(
+                "https://minha-api-e87d.onrender.com/"
+            );
+
+            const dados = await resposta.json();
+
+            document.getElementById("resultado").innerText =
+                dados.mensagem;
+        }
+
+    </script>
+
+</body>
+
+</html>
