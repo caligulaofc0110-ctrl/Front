@@ -2,82 +2,755 @@
 <html lang="pt-br">
 
 <head>
+
     <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Minha API</title>
 
     <style>
-        body {
-            font-family: Arial;
-            background: #f2f2f2;
-            text-align: center;
-            padding-top: 50px;
+
+        * {
+            box-sizing: border-box;
         }
 
-        .caixa {
-            background: white;
-            width: 300px;
-            margin: auto;
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #111827;
+
+            color: white;
+
             padding: 20px;
-            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .status {
+
+            text-align: center;
+
+            margin-bottom: 20px;
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            background: #1f2937;
+        }
+
+        .container {
+
+            max-width: 900px;
+
+            margin: auto;
+        }
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 15px;
+        }
+
+        .card {
+
+            background: #1f2937;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 5px 15px rgba(0,0,0,0.2);
         }
 
         button {
-            padding: 10px 20px;
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin-top: 8px;
+
             border: none;
-            border-radius: 5px;
+
+            border-radius: 8px;
+
             cursor: pointer;
+
+            font-size: 15px;
         }
 
-        #resultado {
-            margin-top: 20px;
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 10px;
+
+            margin-top: 8px;
+
+            border-radius: 6px;
+
+            border: none;
         }
+
+        .resultado {
+
+            margin-top: 12px;
+
+            padding: 10px;
+
+            background: #111827;
+
+            border-radius: 8px;
+
+            min-height: 30px;
+
+            word-wrap: break-word;
+        }
+
+        pre {
+
+            white-space: pre-wrap;
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <div class="caixa">
 
-        <h1>Minha API</h1>
+<div class="container">
 
-        <p>Teste de frontend + backend</p>
+    <h1>🚀 Minha API</h1>
 
-        <button onclick="buscarMensagem()">
-            Buscar mensagem
-        </button>
 
-        <p id="resultado">
-            Nada recebido ainda...
-        </p>
+    <div class="status">
+
+        Frontend: Netlify 🌐
+
+        <br>
+
+        Backend: Render 🐍
 
     </div>
 
 
-    <script>
-        async function buscarMensagem() {
+    <div class="grid">
+
+
+        <!-- MENSAGEM -->
+
+        <div class="card">
+
+            <h2>💬 Mensagem</h2>
+
+            <button onclick="buscarMensagem()">
+                Buscar mensagem
+            </button>
+
+            <div id="mensagem"
+                 class="resultado">
+                Nada ainda...
+            </div>
+
+        </div>
+
+
+        <!-- HORA -->
+
+        <div class="card">
+
+            <h2>🕒 Hora do servidor</h2>
+
+            <button onclick="buscarHora()">
+                Ver hora
+            </button>
+
+            <div id="hora"
+                 class="resultado">
+                Nada ainda...
+            </div>
+
+        </div>
+
+
+        <!-- RANDOM -->
+
+        <div class="card">
+
+            <h2>🎲 Número aleatório</h2>
+
+            <button onclick="buscarRandom()">
+                Gerar número
+            </button>
+
+            <div id="random"
+                 class="resultado">
+                Nada ainda...
+            </div>
+
+        </div>
+
+
+        <!-- PIADA -->
+
+        <div class="card">
+
+            <h2>😂 Piada</h2>
+
+            <button onclick="buscarPiada()">
+                Contar piada
+            </button>
+
+            <div id="piada"
+                 class="resultado">
+                Nada ainda...
+            </div>
+
+        </div>
+
+
+        <!-- CALCULADORA -->
+
+        <div class="card">
+
+            <h2>🧮 Calculadora</h2>
+
+            <input
+                id="numero1"
+                type="number"
+                placeholder="Número 1"
+            >
+
+            <input
+                id="numero2"
+                type="number"
+                placeholder="Número 2"
+            >
+
+            <select id="operacao">
+
+                <option value="somar">
+                    Somar
+                </option>
+
+                <option value="subtrair">
+                    Subtrair
+                </option>
+
+                <option value="multiplicar">
+                    Multiplicar
+                </option>
+
+                <option value="dividir">
+                    Dividir
+                </option>
+
+            </select>
+
+            <button onclick="calcular()">
+                Calcular
+            </button>
+
+            <div id="calculo"
+                 class="resultado">
+                Resultado...
+            </div>
+
+        </div>
+
+
+        <!-- ECO -->
+
+        <div class="card">
+
+            <h2>📡 Testar POST</h2>
+
+            <input
+                id="texto"
+                type="text"
+                placeholder="Digite alguma coisa"
+            >
+
+            <button onclick="enviarTexto()">
+                Enviar para API
+            </button>
+
+            <div id="eco"
+                 class="resultado">
+                Nada enviado...
+            </div>
+
+        </div>
+
+
+        <!-- USUÁRIO -->
+
+        <div class="card">
+
+            <h2>👤 Usuário</h2>
+
+            <button onclick="buscarUsuario()">
+                Buscar usuário
+            </button>
+
+            <div id="usuario"
+                 class="resultado">
+                Nada ainda...
+            </div>
+
+        </div>
+
+
+        <!-- LISTA -->
+
+        <div class="card">
+
+            <h2>📋 Lista</h2>
+
+            <button onclick="buscarLista()">
+                Buscar lista
+            </button>
+
+            <div id="lista"
+                 class="resultado">
+                Nada ainda...
+            </div>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="card">
+
+            <h2>📊 Status da API</h2>
+
+            <button onclick="buscarStatus()">
+                Ver status
+            </button>
+
+            <div id="statusApi"
+                 class="resultado">
+                Nada ainda...
+            </div>
+
+        </div>
+
+
+        <!-- INFO -->
+
+        <div class="card">
+
+            <h2>🖥️ Informações</h2>
+
+            <button onclick="buscarInfo()">
+                Ver servidor
+            </button>
+
+            <div id="info"
+                 class="resultado">
+                Nada ainda...
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+const API = "https://minha-api-e87d.onrender.com";
+
+
+async function buscarMensagem() {
 
     try {
 
-        const resposta = await fetch(
-            "https://minha-api-e87d.onrender.com/"
-        );
+        const resposta =
+            await fetch(API + "/api/mensagem");
 
-        const dados = await resposta.json();
+        const dados =
+            await resposta.json();
 
-        document.getElementById("resultado").innerText =
+        document.getElementById("mensagem")
+            .innerText = dados.mensagem;
+
+    }
+
+    catch (erro) {
+
+        mostrarErro("mensagem", erro);
+
+    }
+
+}
+
+
+async function buscarHora() {
+
+    try {
+
+        const resposta =
+            await fetch(API + "/api/hora");
+
+        const dados =
+            await resposta.json();
+
+        document.getElementById("hora")
+            .innerText =
+            dados.data + " - " + dados.hora;
+
+    }
+
+    catch (erro) {
+
+        mostrarErro("hora", erro);
+
+    }
+
+}
+
+
+async function buscarRandom() {
+
+    try {
+
+        const resposta =
+            await fetch(API + "/api/random");
+
+        const dados =
+            await resposta.json();
+
+        document.getElementById("random")
+            .innerText =
+            "Número: " + dados.numero;
+
+    }
+
+    catch (erro) {
+
+        mostrarErro("random", erro);
+
+    }
+
+}
+
+
+async function buscarPiada() {
+
+    try {
+
+        const resposta =
+            await fetch(API + "/api/piada");
+
+        const dados =
+            await resposta.json();
+
+        document.getElementById("piada")
+            .innerText = dados.piada;
+
+    }
+
+    catch (erro) {
+
+        mostrarErro("piada", erro);
+
+    }
+
+}
+
+
+async function calcular() {
+
+    const numero1 =
+        document.getElementById("numero1").value;
+
+    const numero2 =
+        document.getElementById("numero2").value;
+
+    const operacao =
+        document.getElementById("operacao").value;
+
+
+    try {
+
+        const resposta =
+            await fetch(API + "/api/calcular", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    numero1: numero1,
+
+                    numero2: numero2,
+
+                    operacao: operacao
+
+                })
+
+            });
+
+
+        const dados =
+            await resposta.json();
+
+
+        if (dados.erro) {
+
+            document.getElementById("calculo")
+                .innerText =
+                "Erro: " + dados.erro;
+
+            return;
+
+        }
+
+
+        document.getElementById("calculo")
+            .innerText =
+            "Resultado: " + dados.resultado;
+
+    }
+
+    catch (erro) {
+
+        mostrarErro("calculo", erro);
+
+    }
+
+}
+
+
+async function enviarTexto() {
+
+    const texto =
+        document.getElementById("texto").value;
+
+
+    try {
+
+        const resposta =
+            await fetch(API + "/api/echo", {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type":
+                        "application/json"
+
+                },
+
+                body: JSON.stringify({
+
+                    texto: texto
+
+                })
+
+            });
+
+
+        const dados =
+            await resposta.json();
+
+
+        document.getElementById("eco")
+            .innerText =
             dados.mensagem;
 
-    } catch (erro) {
-
-        document.getElementById("resultado").innerText =
-            "Deu erro: " + erro;
-
-        console.log(erro);
     }
-        }
-    
-    </script>
+
+    catch (erro) {
+
+        mostrarErro("eco", erro);
+
+    }
+
+}
+
+
+async function buscarUsuario() {
+
+    try {
+
+        const resposta =
+            await fetch(API + "/api/usuario");
+
+        const dados =
+            await resposta.json();
+
+
+        document.getElementById("usuario")
+            .innerHTML =
+
+            "ID: " + dados.id +
+
+            "<br>Nome: " + dados.nome +
+
+            "<br>Nível: " + dados.nivel +
+
+            "<br>Linguagens: " +
+            dados.linguagens.join(", ");
+
+    }
+
+    catch (erro) {
+
+        mostrarErro("usuario", erro);
+
+    }
+
+}
+
+
+async function buscarLista() {
+
+    try {
+
+        const resposta =
+            await fetch(API + "/api/lista");
+
+        const dados =
+            await resposta.json();
+
+
+        document.getElementById("lista")
+            .innerHTML =
+
+            dados.itens
+                .map(item => "• " + item)
+                .join("<br>");
+
+    }
+
+    catch (erro) {
+
+        mostrarErro("lista", erro);
+
+    }
+
+}
+
+
+async function buscarStatus() {
+
+    try {
+
+        const resposta =
+            await fetch(API + "/api/status");
+
+        const dados =
+            await resposta.json();
+
+
+        document.getElementById("statusApi")
+            .innerHTML =
+
+            "Status: " + dados.status +
+
+            "<br>Sistema: " + dados.sistema +
+
+            "<br>Python: " + dados.python +
+
+            "<br>Requisições: " +
+            dados.contador_requisicoes +
+
+            "<br>Online há: " +
+            dados.tempo_online_segundos +
+            " segundos";
+
+    }
+
+    catch (erro) {
+
+        mostrarErro("statusApi", erro);
+
+    }
+
+}
+
+
+async function buscarInfo() {
+
+    try {
+
+        const resposta =
+            await fetch(API + "/api/info");
+
+        const dados =
+            await resposta.json();
+
+
+        document.getElementById("info")
+            .innerHTML =
+
+            "Servidor: " +
+            dados.servidor +
+
+            "<br>Linguagem: " +
+            dados.linguagem +
+
+            "<br>Hospedagem: " +
+            dados.hospedagem +
+
+            "<br>Sistema: " +
+            dados.sistema +
+
+            "<br>Arquitetura: " +
+            dados.arquitetura +
+
+            "<br>Python: " +
+            dados.python;
+
+    }
+
+    catch (erro) {
+
+        mostrarErro("info", erro);
+
+    }
+
+}
+
+
+function mostrarErro(elemento, erro) {
+
+    document.getElementById(elemento)
+        .innerText =
+        "❌ Erro: " + erro;
+
+}
+
+
+</script>
+
 
 </body>
 
-</html>
+                </html>
