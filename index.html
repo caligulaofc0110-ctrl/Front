@@ -54,19 +54,28 @@
 
 
     <script>
-
         async function buscarMensagem() {
 
-            const resposta = await fetch(
-                "https://minha-api-e87d.onrender.com/"
-            );
+    try {
 
-            const dados = await resposta.json();
+        const resposta = await fetch(
+            "https://minha-api-e87d.onrender.com/"
+        );
 
-            document.getElementById("resultado").innerText =
-                dados.mensagem;
+        const dados = await resposta.json();
+
+        document.getElementById("resultado").innerText =
+            dados.mensagem;
+
+    } catch (erro) {
+
+        document.getElementById("resultado").innerText =
+            "Deu erro: " + erro;
+
+        console.log(erro);
+    }
         }
-
+    
     </script>
 
 </body>
